@@ -326,7 +326,7 @@ def main():
     # ⑥ CSV 저장
     df = pd.DataFrame(data)
     df.to_csv("data/맛집.csv", index=False, encoding="utf-8-sig")
-    print("\n✅ 저장 완료: data/맛집.csv")
+    print("저장 완료")
 
 
 if __name__ == "__main__":
