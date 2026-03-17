@@ -28,9 +28,6 @@ def load_base_data(path: str) -> pd.DataFrame:
 
 
 def merge_cluster(cluster_df: pd.DataFrame, base_df: pd.DataFrame) -> pd.DataFrame:
-    """
-    클러스터 데이터프레임에서 호텔 분류 행에만 base_df의 상세 정보를 병합
-    """
     cluster_df = cluster_df.copy()
     for col in ['분류', '관광지', '가맹점명']:
         cluster_df[col] = cluster_df[col].str.lower()
