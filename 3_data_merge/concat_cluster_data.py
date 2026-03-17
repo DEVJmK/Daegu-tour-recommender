@@ -1,9 +1,5 @@
 """
 클러스터 데이터에 장소 상세 정보 병합
-- 입력: data/~.csv (가게 이미지 URL, 별점, 위도/경도 등 상세 정보)
-         data/cluster_0.xlsx ~ cluster_4.xlsx
-- 출력: data/finish_cluster_0.xlsx ~ finish_cluster_4.xlsx
-
 병합 기준: (분류, 관광지, 가맹점명) 일치 (대소문자 무시)
 호텔 분류 항목에 대해서만 상세 정보 추가
 """
@@ -18,7 +14,7 @@ COLUMNS_TO_ADD = [
 ]
 
 CLUSTER_IDS   = [0, 1, 2, 3]
-BASE_CSV_PATH = "data/찐.csv"
+BASE_CSV_PATH = "data.csv"
 INPUT_PREFIX  = "data/cluster_"
 OUTPUT_PREFIX = "data/finish_cluster_"
 
