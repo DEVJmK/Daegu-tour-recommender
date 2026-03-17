@@ -43,6 +43,7 @@ nolleoGaShop/
 ├── data/                                # 데이터 파일 (Git 제외 - .gitignore 참고)
 │   ├── tourish_data.csv
 │   ├── cluster_0.xlsx ~ cluster_3.xlsx
+│   ├── finish_cluster_0.xlsx ~ finish_cluster_3.xlsx
 │   └── 데이터 카드1234.xlsx
 │
 ├── .gitignore
