@@ -13,7 +13,7 @@
 ## 파이프라인
 
 ```
-데이터 수집 (네이버 지도 크롤링)
+데이터 수집
     ↓
 리뷰 전처리 & 텍스트 벡터화 (GTR-T5-xl, GTR-T5-large 앙상블)
     ↓
@@ -42,8 +42,8 @@ nolleoGaShop/
 │
 ├── data/                                # 데이터 파일 (Git 제외 - .gitignore 참고)
 │   ├── tourish_data.csv
-│   ├── cluster_0.xlsx ~ cluster_4.xlsx
-│   └── 데이터.xlsx
+│   ├── cluster_0.xlsx ~ cluster_3.xlsx
+│   └── 데이터 카드1234.xlsx
 │
 ├── .gitignore
 └── README.md
@@ -61,13 +61,13 @@ pip install -r requirements.txt
 - `sentence-transformers` — 텍스트 임베딩 (GTR-T5 계열)
 - `scikit-learn` — 클러스터링, 유사도 계산
 - `pandas`, `numpy`, `openpyxl` — 데이터 처리
-- `matplotlib`, `seaborn` — 시각화
+- `matplotlib` — 시각화
 
 ---
 
-1. **전처리**: `2_preprocessing/review_preprocessing.py` 실행 → `cluster_0~4.xlsx` 생성
-2. **병합**: `3_data_merge/concat_cluster_data.py` 실행 → `finish_cluster_0~4.xlsx` 생성
-3. **추천**: `4_recommendation/cosine_similarity_recommend.py` 실행
+1. **전처리**: `1_preprocessing/review_preprocessing.py` 실행 → `cluster_0~3.xlsx` 생성
+2. **병합**: `2_data_merge/concat_cluster_data.py` 실행 → `finish_cluster_0~3.xlsx` 생성
+3. **추천**: `3_recommendation/cosine_similarity_recommend.py` 실행
 
 ---
 
