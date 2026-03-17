@@ -319,7 +319,6 @@ def main():
 
     visualize_clusters(reduced, labels, title="GTR-T5 앙상블 KMeans 클러스터링")
     save_cluster_files(df, labels, output_dir="data")
-    print("\n완료: data/cluster_0~4.xlsx")
 
 
 if __name__ == "__main__":
