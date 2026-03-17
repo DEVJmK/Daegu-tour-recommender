@@ -29,7 +29,7 @@
 ## 디렉토리 구조
 
 ```
-nolleoGaShop/
+Daegu-tour-recommender/
 │
 ├── 1_preprocessing/
 │   └── review_preprocessing.py          # 리뷰 전처리 & 임베딩 & 클러스터링
