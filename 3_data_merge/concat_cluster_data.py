@@ -1,6 +1,6 @@
 """
 클러스터 데이터에 장소 상세 정보 병합
-- 입력: data/찐.csv (가게 이미지 URL, 별점, 위도/경도 등 상세 정보)
+- 입력: data/~.csv (가게 이미지 URL, 별점, 위도/경도 등 상세 정보)
          data/cluster_0.xlsx ~ cluster_4.xlsx
 - 출력: data/finish_cluster_0.xlsx ~ finish_cluster_4.xlsx
 
