@@ -180,10 +180,10 @@ def recommend(
 
         w_row = demo_filtered[demo_filtered["관광지"] == region]
         w_val = float(w_row["가중치"].values[0]) if not w_row.empty else 1.0
-        weights = np.full(len(categories), 1 + alpha * (w_val - 1))
 
-        sim = calculate_similarity(user_vector, reg_vec, weights)
-        results.append({"관광지": region, "유사도": sim})
+        sim = float(cosine_similarity(user_vector.reshape(1, -1), reg_vec.reshape(1, -1))[0][0])
+        final_score = sim * (1 + alpha * w_val)
+        results.append({"관광지": region, "유사도": final_score})
 
     similarity_df = pd.DataFrame(results).sort_values("유사도", ascending=False)
 
