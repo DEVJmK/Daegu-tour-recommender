@@ -52,10 +52,6 @@ def merge_cluster(cluster_df: pd.DataFrame, base_df: pd.DataFrame) -> pd.DataFra
 
 
 def main():
-    print("=" * 50)
-    print("클러스터 데이터 병합 시작")
-    print("=" * 50)
-
     base_df = load_base_data(BASE_CSV_PATH)
     print(f"기준 데이터 로드: {len(base_df)}행")
 
@@ -68,10 +64,6 @@ def main():
 
         merged_df = merge_cluster(cluster_df, base_df)
         merged_df.to_excel(out_path, index=False, engine='openpyxl')
-        print(f"  저장 완료: {out_path}")
-
-    print("\n✅ 전체 병합 완료")
-
 
 if __name__ == "__main__":
     main()
