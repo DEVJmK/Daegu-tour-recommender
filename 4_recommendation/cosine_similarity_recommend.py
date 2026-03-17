@@ -1,7 +1,7 @@
 """
 소비 데이터 기반 관광지 추천 모델
 - 입력: data/데이터 카드1234.xlsx (신한카드 소비 데이터)
-         data/finish_cluster_0~4.xlsx (클러스터 결과)
+         data/finish_cluster_0~3.xlsx (클러스터 결과)
 - 출력: 콘솔에 추천 관광지 및 가맹점 목록 출력
 
 추천 방법:
@@ -108,17 +108,6 @@ def load_cluster(cluster_id: int, prefix: str = "data/finish_cluster_") -> pd.Da
 # 추천 계산
 # ─────────────────────────────────────────────
 
-def calculate_similarity(user_vec: np.ndarray, region_vec: np.ndarray, weights: np.ndarray) -> float:
-    """가중 코사인 유사도 계산 (0인 항목 제외)"""
-    valid = np.where((user_vec != 0) & (region_vec != 0))[0]
-    if len(valid) == 0:
-        return 0.0
-
-    u = user_vec[valid] * weights[valid]
-    r = region_vec[valid] * weights[valid]
-    return float(cosine_similarity(u.reshape(1, -1), r.reshape(1, -1))[0][0])
-
-
 def recommend(
     cluster_id: int,
     user_gender: str,
@@ -130,7 +119,7 @@ def recommend(
     """
     Parameters
     ----------
-    cluster_id       : 선택할 클러스터 번호 (0~4)
+    cluster_id       : 선택할 클러스터 번호 (0~3)
     user_gender      : 'M' 또는 'F'
     user_age_group   : 연령대 정수 (예: 20, 30, 40)
     user_consumption : {'소매/쇼핑': 금액, '숙박': 금액, ...}
@@ -162,10 +151,9 @@ def recommend(
         scaler = MinMaxScaler()
         demo_filtered["가중치"] = scaler.fit_transform(demo_filtered[["가중치"]])
     except KeyError:
-        print(f"  ⚠ 성별/연령({user_gender}, {user_age_group}) 데이터 없음 → 균등 가중치 사용")
         demo_filtered = pd.DataFrame({
             "관광지": tourist_spots,
-            "가중치": np.ones(len(tourist_spots)),
+            "가중치": np.zeros(len(tourist_spots))
         })
 
     # ── 사용자 소비 벡터 ──
@@ -179,9 +167,15 @@ def recommend(
         reg_vec    = row[categories].to_numpy(dtype=float)
 
         w_row = demo_filtered[demo_filtered["관광지"] == region]
-        w_val = float(w_row["가중치"].values[0]) if not w_row.empty else 1.0
-
-        sim = float(cosine_similarity(user_vector.reshape(1, -1), reg_vec.reshape(1, -1))[0][0])
+        w_val = float(w_row["가중치"].values[0]) if not w_row.empty else 0.0
+        if np.all(user_vector == 0) or np.all(reg_vec == 0):
+            sim = 0.0
+        else:
+            sim = float(cosine_similarity(
+                user_vector.reshape(1, -1),
+                reg_vec.reshape(1, -1)
+            )[0][0])
+                  
         final_score = sim * (1 + alpha * w_val)
         results.append({"관광지": region, "유사도": final_score})
 
