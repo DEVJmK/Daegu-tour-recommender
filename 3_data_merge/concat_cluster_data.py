@@ -21,7 +21,7 @@ OUTPUT_PREFIX = "data/finish_cluster_"
 
 def load_base_data(path: str) -> pd.DataFrame:
     """기준 CSV 파일 로드 및 키 컬럼 소문자 정규화"""
-    df = pd.read_csv(path, encoding='ANSI')
+    df = pd.read_csv(path, encoding='cp949')
     for col in ['분류', '관광지', '가맹점명']:
         df[col] = df[col].str.lower()
     return df
