@@ -35,9 +35,8 @@ def merge_cluster(cluster_df: pd.DataFrame, base_df: pd.DataFrame) -> pd.DataFra
     for col in ['분류', '관광지', '가맹점명']:
         cluster_df[col] = cluster_df[col].str.lower()
 
-    hotel_mask = cluster_df['분류'] == '호텔'
 
-    for idx, row in cluster_df[hotel_mask].iterrows():
+    for idx, row in cluster_df.iterrows():
         match = base_df[
             (base_df['분류']    == row['분류'])    &
             (base_df['관광지']  == row['관광지'])  &
