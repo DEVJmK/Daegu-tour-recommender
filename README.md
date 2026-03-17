@@ -24,6 +24,10 @@
 코사인 유사도 기반 관광지 추천
 ```
 
+<p>
+<img width="926" height="1254" alt="image" src="https://github.com/user-attachments/assets/c758d97a-ea04-4ebb-88dd-472c9488b01b" />
+</p>
+
 ---
 
 ## 디렉토리 구조
