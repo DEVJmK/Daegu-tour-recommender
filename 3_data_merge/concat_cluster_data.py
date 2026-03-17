@@ -14,7 +14,7 @@ COLUMNS_TO_ADD = [
 ]
 
 CLUSTER_IDS   = [0, 1, 2, 3]
-BASE_CSV_PATH = "data.csv"
+BASE_CSV_PATH = "data/data.csv"
 INPUT_PREFIX  = "data/cluster_"
 OUTPUT_PREFIX = "data/finish_cluster_"
 
